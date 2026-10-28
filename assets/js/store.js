@@ -114,6 +114,36 @@
       fail(res.error);
     },
 
+
+    /* ---------- galeria de fotos da loja ---------- */
+    listPhotos: async function (all) {
+      if (!live) { var l = load("nob_photos", []).sort(function (a, b) { return a.order - b.order; }); return all ? l : l.filter(function (x) { return x.active; }); }
+      var q = sb.from("galeria").select("*").order("ordem", { ascending: true }).order("criado_em", { ascending: false });
+      if (!all) q = q.eq("ativo", true);
+      var res = await q; fail(res.error);
+      return res.data.map(function (r) { return { id: r.id, url: r.foto_url, caption: r.legenda || "", order: r.ordem, active: !!r.ativo }; });
+    },
+    addPhoto: async function (url, caption) {
+      var list = await store.listPhotos(true);
+      var order = list.length ? Math.max.apply(null, list.map(function (x) { return x.order; })) + 1 : 0;
+      if (!live) { var d = load("nob_photos", []); d.push({ id: "f" + Date.now() + Math.random().toString(36).slice(2, 5), url: url, caption: caption || "", order: order, active: true }); save("nob_photos", d); return; }
+      var res = await sb.from("galeria").insert({ foto_url: url, legenda: caption || "", ordem: order, ativo: true }); fail(res.error);
+    },
+    updatePhoto: async function (id, patch) {
+      if (!live) { save("nob_photos", load("nob_photos", []).map(function (x) { return x.id === id ? Object.assign({}, x, patch) : x; })); return; }
+      var row = {}; if ("caption" in patch) row.legenda = patch.caption; if ("active" in patch) row.ativo = patch.active; if ("order" in patch) row.ordem = patch.order;
+      var res = await sb.from("galeria").update(row).eq("id", id); fail(res.error);
+    },
+    deletePhoto: async function (id, url) {
+      if (!live) { save("nob_photos", load("nob_photos", []).filter(function (x) { return x.id !== id; })); return; }
+      var res = await sb.from("galeria").delete().eq("id", id); fail(res.error);
+      var m = /\/fotos\/(.+)$/.exec(url || ""); if (m) await sb.storage.from("fotos").remove([m[1]]);
+    },
+    /* troca a posição de duas fotos */
+    swapPhotos: async function (a, b) {
+      await store.updatePhoto(a.id, { order: b.order }); await store.updatePhoto(b.id, { order: a.order });
+    },
+
     /* ---------- login do lojista ---------- */
     signedIn: async function () {
       if (!live) { try { return sessionStorage.getItem("nob_admin") === "1"; } catch (e) { return !!store._mem; } }

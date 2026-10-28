@@ -50,6 +50,21 @@ create policy "lojista envia fotos" on storage.objects for insert to authenticat
 drop policy if exists "lojista apaga fotos" on storage.objects;
 create policy "lojista apaga fotos" on storage.objects for delete to authenticated using (bucket_id = 'fotos');
 
+-- Galeria de fotos da loja (seção "Galeria" do site)
+create table if not exists public.galeria (
+  id         uuid primary key default gen_random_uuid(),
+  foto_url   text not null,
+  legenda    text default '',
+  ordem      int  not null default 0,
+  ativo      boolean not null default true,
+  criado_em  timestamptz not null default now()
+);
+alter table public.galeria enable row level security;
+drop policy if exists "galeria publica" on public.galeria;
+create policy "galeria publica" on public.galeria for select using (ativo or auth.role() = 'authenticated');
+drop policy if exists "lojista edita galeria" on public.galeria;
+create policy "lojista edita galeria" on public.galeria for all to authenticated using (true) with check (true);
+
 -- Peças de exemplo (apague ou edite pelo painel depois)
 insert into public.produtos (nome, categoria, metal, detalhes, peso, descricao, destaque)
 select * from (values

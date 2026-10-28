@@ -3,7 +3,8 @@
 Site da Nobilite Joias, joalheria na Rua Blumenau, 54, Centro de Timbó (SC).
 
 - **Vitrine** (`index.html`): coleções, catálogo com filtro, ficha de cada peça com pedido pelo WhatsApp, serviços, guia de quilates, endereço e redes sociais.
-- **Área do lojista** (`admin.html`): login, cadastro de peças com foto, ocultar/mostrar, destaques, exclusão, número do WhatsApp e faixa de aviso.
+- **Galeria**: fotos reais da loja, gerenciadas no painel (envio de várias de uma vez, legenda, ordem, ocultar e excluir). A seção só aparece no site quando há fotos.
+- **Área do lojista** (`admin.html`): login, cadastro de peças com foto, ocultar/mostrar, destaques, exclusão, fotos da loja, número do WhatsApp e faixa de aviso.
 
 É um site estático (HTML, CSS e JavaScript, sem build). Os dados ficam no [Supabase](https://supabase.com) (plano gratuito atende).
 

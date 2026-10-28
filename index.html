@@ -27,6 +27,7 @@
 </script>
 </head>
 <body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <div id="site">
   <div class="announce" id="announce">Alianças sob medida com gravação inclusa. Fale com a gente pelo WhatsApp.</div>
   <header class="top">
@@ -35,6 +36,7 @@
       <nav class="nav" aria-label="Principal">
         <a href="#colecoes">Coleções</a>
         <a href="#vitrine">Vitrine</a>
+        <a href="#galeria" id="navGal" hidden>Galeria</a>
         <a href="#servicos">Serviços</a>
         <a href="#visite">Visite</a>
         <a class="btn small" id="navWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
@@ -42,7 +44,8 @@
     </div>
   </header>
 
-  <main id="inicio">
+  <main id="conteudo">
+    <span id="inicio"></span>
     <section class="hero">
       <div class="wrap">
         <div>
@@ -87,6 +90,16 @@
       </div>
     </section>
 
+    <section class="block" id="galeria" hidden>
+      <div class="wrap">
+        <div class="head">
+          <div><div class="eyebrow">Galeria</div><h2>A loja por dentro</h2></div>
+          <p>Fotos reais da Nobilite e das peças. Toque para ampliar.</p>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
     <section class="block" id="servicos">
       <div class="wrap">
         <div class="head">
@@ -112,6 +125,33 @@
           <div class="k-item"><div class="eyebrow">Ouro 18k</div><div class="big">750</div><div class="bar"><i style="width:75%"></i></div><p>75% de ouro puro. O padrão das alianças e joias finas: cor quente e resistente ao uso diário.</p></div>
           <div class="k-item"><div class="eyebrow">Prata de lei</div><div class="big">925</div><div class="bar"><i style="width:92.5%"></i></div><p>92,5% de prata. Brilho frio, ótima para brincos e colares do dia a dia.</p></div>
           <div class="k-item"><div class="eyebrow">Ouro 24k</div><div class="big">999</div><div class="bar"><i style="width:99.9%"></i></div><p>Ouro quase puro. Macio demais para joias de uso, por isso raramente é usado em anéis.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="como-comprar">
+      <div class="wrap">
+        <div class="head">
+          <div><div class="eyebrow">Como funciona</div><h2>Do primeiro contato à retirada</h2></div>
+          <p>Atendimento próximo, sem fila e sem pressa, na loja ou pelo WhatsApp.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="n">1 · ESCOLHA</div><h3>Veja a vitrine</h3><p>Escolha uma peça no site e toque em "Pedir no WhatsApp". A mensagem já vai pronta com o nome da joia.</p></div>
+          <div class="step"><div class="n">2 · CONFIRA</div><h3>Receba os detalhes</h3><p>Respondemos com fotos reais, medidas, aro disponível e valor. Se quiser, reservamos a peça para você.</p></div>
+          <div class="step"><div class="n">3 · RETIRE</div><h3>Venha buscar na loja</h3><p>Prove, ajuste o aro se precisar e leve a joia em embalagem de presente. Alianças com gravação têm prazo combinado.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="perguntas">
+      <div class="wrap">
+        <div class="head"><div><div class="eyebrow">Perguntas frequentes</div><h2>Antes de vir</h2></div></div>
+        <div class="faq">
+          <details><summary>Vocês vendem pelo site?</summary><p>O site é a vitrine. O pedido e o pagamento são combinados direto com a loja, pelo WhatsApp ou pessoalmente, para você tirar todas as dúvidas antes de comprar.</p></details>
+          <details><summary>Posso mandar gravar nomes e data na aliança?</summary><p>Sim. A gravação interna está inclusa nas alianças. Fale com a loja para combinar o texto e o prazo.</p></details>
+          <details><summary>E se o anel não servir?</summary><p>Fazemos o ajuste de aro na própria loja, com orçamento antes de qualquer trabalho.</p></details>
+          <details><summary>Como sei que o ouro é de verdade?</summary><p>As peças em ouro 18k levam a marca 750 gravada, e as de prata levam 925. Explicamos cada marca no guia da página.</p></details>
+          <details><summary>Qual o horário de atendimento?</summary><p>Confirme o horário atual pelo WhatsApp (47) 3382-9961 antes de vir, principalmente em feriados e datas comemorativas.</p></details>
         </div>
       </div>
     </section>
@@ -161,7 +201,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
 <script src="assets/js/store.js"></script>
-<script src="assets/js/ring.js"></script>
+<script src="assets/js/ring.js" defer></script>
 <script src="assets/js/site.js"></script>
+<noscript><p style="padding:24px;text-align:center">Ative o JavaScript para ver a vitrine, ou chame a gente no WhatsApp (47) 3382-9961.</p></noscript>
 </body>
 </html>
