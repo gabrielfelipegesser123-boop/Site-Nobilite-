@@ -17,9 +17,17 @@ Sem nada configurado em `config.js`, o site já funciona com peças de exemplo, 
 2. Em **SQL Editor**, cole e rode todo o arquivo [`supabase/schema.sql`](supabase/schema.sql). Ele cria as tabelas, as regras de acesso, o espaço das fotos e quatro peças de exemplo.
 3. Em **Authentication → Users**, clique em **Add user** e crie o usuário da loja (e-mail e senha). Depois, em **Authentication → Sign In / Providers**, desligue **Allow new users to sign up**, para ninguém mais conseguir criar conta.
 4. Em **Project Settings → API**, copie a **Project URL** e a chave **anon public** e cole em `config.js`. A chave anon pode ficar pública: quem protege os dados são as regras do `schema.sql`.
-5. Publique o site. A forma mais simples é o GitHub Pages: no repositório, **Settings → Pages → Deploy from a branch → main / (root)**. Também funciona em Vercel, Netlify ou Cloudflare Pages, sem configuração.
+5. Publique o site (veja abaixo).
 
-O painel fica em `/admin.html` (o link "Área do lojista" está no rodapé).
+## Publicar na Vercel
+
+1. Entre em [vercel.com](https://vercel.com) com a conta do GitHub.
+2. **Add New → Project**, escolha o repositório `Site-Nobilite-` e clique em **Import**.
+3. Em **Framework Preset**, deixe **Other**. Não precisa de Build Command nem Output Directory.
+4. Clique em **Deploy**. O site fica em `https://<nome-do-projeto>.vercel.app`, e cada push na `main` publica de novo sozinho.
+5. Para usar um domínio próprio (ex.: `nobilitejoias.com.br`): **Settings → Domains** no projeto da Vercel.
+
+O painel fica em `/admin` (o link "Área do lojista" está no rodapé). O `vercel.json` tira o `.html` dos endereços e pede aos buscadores para não indexar o painel.
 
 ## Estrutura
 
